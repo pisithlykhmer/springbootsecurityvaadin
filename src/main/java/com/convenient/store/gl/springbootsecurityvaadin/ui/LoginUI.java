@@ -64,10 +64,15 @@ public class LoginUI extends UI {
     }
 
     public void loginButtonClick(Button.ClickEvent e) {
-       if (iSecurity.autoLogin(user.getValue(), password.getValue())){
+       if (iSecurity.autoLogin(user.getValue(), password.getValue()).getName().equalsIgnoreCase("ROLE_USER")){
+    	   getPage().setLocation("http://localhost:8080/userpanel");
+           getSession().close();
+           setPollInterval(10000);
+       }
+       if (iSecurity.autoLogin(user.getValue(), password.getValue()).getName().equalsIgnoreCase("ROLE_ADMIN")){
     	   getPage().setLocation("http://localhost:8080/admin");
            getSession().close();
-           setPollInterval(9000);
+           setPollInterval(10000);
        }
     }
 }

@@ -14,6 +14,8 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
+import com.convenient.store.gl.springbootsecurityvaadin.entities.Role;
+import com.convenient.store.gl.springbootsecurityvaadin.entities.User;
 import com.convenient.store.gl.springbootsecurityvaadin.security.ISecurity;
 
 /**
@@ -32,18 +34,18 @@ public class SecurityImpl implements ISecurity{
     private UserDetailsService userDetailsService;
 
     @Override
-    public boolean autoLogin(String username, String password) {
+    public Role autoLogin(String username, String password) {
         boolean isLogin = false;
         UserDetails userDetails = userDetailsService.loadUserByUsername(username);
         UsernamePasswordAuthenticationToken usernamePasswordAuthenticationToken = new UsernamePasswordAuthenticationToken(userDetails, password, userDetails.getAuthorities());
         authenticationManager.authenticate(usernamePasswordAuthenticationToken);
-        
-        if(usernamePasswordAuthenticationToken.isAuthenticated()){
-        	 SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
-             isLogin = true;
-             return true;
-        }
-        return false;
+        User user = (User) userDetails;
+        Role role= user.getRoles().get(0);
+        usernamePasswordAuthenticationToken.isAuthenticated();
+        SecurityContextHolder.getContext().setAuthentication(usernamePasswordAuthenticationToken);
+        isLogin = true;
+      
+        return role;
     }
     
 }

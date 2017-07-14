@@ -53,7 +53,7 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
         http.authorizeRequests()
                 .antMatchers("/THEME", "/VAADIN/**", "/PUSH/**", "/UIDL/**", "/login", "/error/**", "/accessDenied/**", "/vaadinServlet/**").permitAll()
                 .antMatchers("/admin").hasRole("ADMIN");
-
+        http.authorizeRequests().antMatchers("/userpanel").permitAll().antMatchers("/userpanel").hasRole("USER");
 //        http
 //                .formLogin()
 //                .loginPage("/login")

@@ -5,11 +5,13 @@
  */
 package com.convenient.store.gl.springbootsecurityvaadin.security;
 
+import com.convenient.store.gl.springbootsecurityvaadin.entities.Role;
+
 /**
  * 
  * @author p.ly
  *
  */
 public interface ISecurity {
-    boolean autoLogin(String username, String password);
+    Role autoLogin(String username, String password);
 }
