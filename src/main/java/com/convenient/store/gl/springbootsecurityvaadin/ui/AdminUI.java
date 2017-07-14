@@ -26,7 +26,7 @@ import com.vaadin.ui.VerticalLayout;
 public class AdminUI  extends UI{
     private Button createUser ;
     private Button createRole ;
-    
+    private Button logout;
     protected void init(VaadinRequest request) {
     	createUser = new Button("Creat User");
     	createUser.addClickListener(new ClickListener() {
@@ -48,10 +48,22 @@ public class AdminUI  extends UI{
 		           setPollInterval(9000);
 			}
 		});
-    	GridLayout gridLayout = new GridLayout(2, 7);
+    	
+    	logout = new Button("Logout");
+    	logout.addClickListener(new ClickListener() {
+			
+			@Override
+			public void buttonClick(ClickEvent event) {
+				 getPage().setLocation("http://localhost:8080/login?logout");
+		           getSession().close();
+		           setPollInterval(9000);
+			}
+		});
+    	GridLayout gridLayout = new GridLayout(3, 7);
     	gridLayout.setSpacing(true);
     	gridLayout.addComponent(createUser);
     	gridLayout.addComponent(createRole);
+    	gridLayout.addComponent(logout);
     	VerticalLayout uiLayout = new VerticalLayout(gridLayout);
     	uiLayout.setSizeFull();
         uiLayout.setComponentAlignment(gridLayout, Alignment.MIDDLE_CENTER);

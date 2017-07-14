@@ -58,4 +58,9 @@ public class Role implements GrantedAuthority{
     public void setStatus(boolean status) {
         this.status = status;
     }
+    @Override
+    public String toString() {
+    	// TODO Auto-generated method stub
+    	return this.name;
+    }
 }

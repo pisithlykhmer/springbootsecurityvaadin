@@ -48,6 +48,7 @@ public class UserPanel  extends UI{
     private IRoleService iRoleService;
     @Autowired
     private IUserService iUserService;
+    
     @Override
     protected void init(VaadinRequest request) {
     	lastName = new TextField();
@@ -74,7 +75,6 @@ public class UserPanel  extends UI{
     	
     	GridLayout gridLayout = new GridLayout(2, 7);
     	gridLayout.setSpacing(true);
-    	
     	gridLayout.addComponent(new Label("Last Name"));
     	gridLayout.addComponent(lastName);
     	gridLayout.addComponent(new Label("First Name"));
@@ -107,5 +107,16 @@ public class UserPanel  extends UI{
     	roleList.add(role);
     	user.setRoles(roleList);
     	iUserService.saveUser(user);
+    	reset();
+    }
+    /**
+     * reset
+     */
+    public void reset(){
+    	lastName.setValue("");
+    	firtName.setValue("");
+    	userName.setValue("");
+    	password.setValue("");
+    	cbxRole.setSelectedItem(null);
     }
 }

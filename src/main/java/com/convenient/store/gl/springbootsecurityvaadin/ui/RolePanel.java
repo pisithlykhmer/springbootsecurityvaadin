@@ -76,4 +76,6 @@ public class RolePanel  extends UI{
     	role.setStatus(cbStatus.getValue());
     	iRoleService.saveRole(role);
     }
+
+  
 }

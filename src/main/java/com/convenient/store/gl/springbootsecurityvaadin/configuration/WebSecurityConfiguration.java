@@ -51,17 +51,9 @@ public class WebSecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
-                .antMatchers("/THEME", "/VAADIN/**", "/PUSH/**", "/UIDL/**", "/login", "/error/**", "/accessDenied/**", "/vaadinServlet/**").permitAll()
+                .antMatchers("/THEME", "/VAADIN/**", "/PUSH/**", "/UIDL/**", "/login", "/error/**", "/access-denied/**", "/vaadinServlet/**").permitAll()
                 .antMatchers("/admin").hasRole("ADMIN");
-        http.authorizeRequests().antMatchers("/userpanel").permitAll().antMatchers("/userpanel").hasRole("USER");
-//        http
-//                .formLogin()
-//                .loginPage("/login")
-//
-//                .usernameParameter("username")
-//                .passwordParameter("password")
-//                .permitAll()
-//                .successForwardUrl("/");
+        http.authorizeRequests().antMatchers("/userpanel").permitAll().antMatchers("/userpanel").hasAnyRole("ADMIN","USER");
         http.csrf().disable();
         http.exceptionHandling().accessDeniedPage("/access-denied");
     }
